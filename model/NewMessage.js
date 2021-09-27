@@ -16,8 +16,7 @@ const NewMessage = sequelize.define('NewMessage', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true,
-        primaryKey: true
+        allowNull: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -33,7 +32,8 @@ const NewMessage = sequelize.define('NewMessage', {
     },
     key: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        primaryKey: true
     },
     hv: {
         type: DataTypes.STRING,
