@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-const NewProject = sequelize.define('NewProject', {
+const NewItem = sequelize.define('NewItem', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -24,14 +24,14 @@ const NewProject = sequelize.define('NewProject', {
     },
     projectId: {
         type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    itemId: {
+        type: DataTypes.INTEGER,
         allowNull: true,
         primaryKey: true
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    oper: {
+    pubkey: {
         type: DataTypes.STRING,
         allowNull: true
     },
@@ -40,7 +40,7 @@ const NewProject = sequelize.define('NewProject', {
         allowNull: true
     }
 }, {
-    tableName: 'NewProject',
+    tableName: 'NewItem',
     timestamps: false
 });
-module.exports = NewProject
+module.exports = NewItem

@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-const NewProject = sequelize.define('NewProject', {
+const PublishPublicKey = sequelize.define('PublishPublicKey', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -16,7 +16,8 @@ const NewProject = sequelize.define('NewProject', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        primaryKey: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -24,14 +25,13 @@ const NewProject = sequelize.define('NewProject', {
     },
     projectId: {
         type: DataTypes.INTEGER,
-        allowNull: true,
-        primaryKey: true
-    },
-    name: {
-        type: DataTypes.STRING,
         allowNull: true
     },
-    oper: {
+    itemId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    prikey: {
         type: DataTypes.STRING,
         allowNull: true
     },
@@ -40,7 +40,7 @@ const NewProject = sequelize.define('NewProject', {
         allowNull: true
     }
 }, {
-    tableName: 'NewProject',
+    tableName: 'PublishPublicKey',
     timestamps: false
 });
-module.exports = NewProject
+module.exports = PublishPublicKey
