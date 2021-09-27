@@ -3,7 +3,7 @@ const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
 
-    const data = NewItem.findAll();
+    const data = await NewItem.findAll();
     const result = Result.commonResult(data);
 
     res.status(200).json(result);
