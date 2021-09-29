@@ -2,14 +2,21 @@
  * Define Result Format
  */
 
-const codeNumber = require('./code')
+const CodeNumber = require('./code')
 
 const Result = {}
 
-Result.commonResult = function (result) {
+Result.SUCCESS = function (result) {
     return {
-        code: codeNumber.success,
+        code: CodeNumber.SUCCESS,
         result
+    }
+}
+
+Result.ERROR = function (error) {
+    return {
+        code: CodeNumber.ERROR,
+        result: error
     }
 }
 

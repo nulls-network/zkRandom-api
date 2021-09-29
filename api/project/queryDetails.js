@@ -5,8 +5,10 @@ module.exports = async (req, res) => {
 
     const projectId = parseInt(req.query.projectId) || 0;
 
-    const data = await NewProject.findByPk(projectId);
-    const result = Result.commonResult(data);
+    await NewProject.findByPk(projectId).then(data => {
+        res.send(Result.SUCCESS(data))
+    }).catch(err => {
+        res.send(Result.ERROR(err))
+    });
 
-    res.status(200).json(result);
 }

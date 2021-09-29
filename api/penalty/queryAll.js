@@ -3,10 +3,12 @@ const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
 
-    const data = await Penalty.findAll({
+    await Penalty.findAll({
         order: [['createTime', 'DESC']]
+    }).then(data => {
+        res.send(Result.SUCCESS(data))
+    }).catch(err => {
+        res.send(Result.ERROR(err))
     });
-    const result = Result.commonResult(data);
 
-    res.status(200).json(result);
 }

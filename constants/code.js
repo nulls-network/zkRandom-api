@@ -2,8 +2,8 @@
  * Define Result Code
  */
 
-const codeNumber = {
-    success: 200,
-    error: 500,
+const CodeNumber = {
+    SUCCESS: 200,
+    ERROR: 500,
 }
-module.exports = codeNumber
+module.exports = CodeNumber
