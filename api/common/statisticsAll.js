@@ -5,11 +5,17 @@ const Penalty = require('../../model/Penalty')
 const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
-
-    const projects = await NewProject.count();
-    const items = await NewItem.count();
-    const nonces = await NewMessage.count();
-    const penalties = await NewProject.count();
+    const projectId = parseInt(req.query.projectId);
+    const options = {}
+    if (!isNaN(projectId)) {
+        options.where = {
+            projectId: projectId
+        }
+    }
+    const projects = await NewProject.count(options);
+    const items = await NewItem.count(options);
+    const nonces = await NewMessage.count(options);
+    const penalties = await NewProject.count(options);
 
     //TODO
     const address = 0;
