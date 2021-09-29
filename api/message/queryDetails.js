@@ -4,9 +4,9 @@ const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
 
-    const requestKey = req.query.requestKey || 0;
+    const requestKey = req.query.requestKey || '';
 
-    await NewMessage.findByPk(requestKey).then(async data => {
+    await NewMessage.findByPk(requestKey.toString()).then(async data => {
 
         if (data === null) return res.send(Result.SUCCESS(data));
 

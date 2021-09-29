@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
     if (!isNaN(projectId)) {
         options.where = {projectId: projectId}
     }
+
     await NewItem.findAll(options).then(async data => {
         const resList = []
         for (let datum of data) {

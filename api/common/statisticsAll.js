@@ -5,6 +5,7 @@ const Penalty = require('../../model/Penalty')
 const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
+
     const projectId = parseInt(req.query.projectId);
     const itemId = parseInt(req.query.itemId);
     const options = {}
@@ -18,10 +19,10 @@ module.exports = async (req, res) => {
     const items = await NewItem.count(options);
     const nonces = await NewMessage.count(options);
     const penalties = await Penalty.count(options);
-
     //TODO
     const address = 0;
     const randoms = 0;
+
     res.send(Result.SUCCESS({
         'Projects': projects,
         'Items': items,

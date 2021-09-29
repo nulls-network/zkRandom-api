@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
     if (!isNaN(itemId)) {
         options.where = {itemId: itemId}
     }
+
     await NewMessage.findAll(options).then(async data => {
         const resList = []
         for (let datum of data) {
