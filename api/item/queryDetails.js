@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
             'Penalties': penalties,
             'TotalFine': totalFine,
             'Public Key': data.pubkey,
-            'Private Key': privateKey.prikey,
+            'Private Key': privateKey.prikey || 0,
             'Timestamp': data.createTime
         }))
     }).catch(err => {
