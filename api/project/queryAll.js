@@ -11,11 +11,11 @@ module.exports = async (req, res) => {
         limit: limit,
         offset: (page - 1) * limit,
         order: [['createTime', 'DESC']]
-    }).then(data => {
+    }).then(async data => {
         const resList = []
         for (let datum of data) {
             const projectId = datum.projectId;
-            const items = NewItem.count({
+            const items = await NewItem.count({
                 where: {
                     projectId: projectId
                 }
