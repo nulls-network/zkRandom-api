@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 
     await NewMessage.findByPk(requestKey).then(async data => {
 
-        if (data === null) res.send(Result.SUCCESS(data));
+        if (data === null) return res.send(Result.SUCCESS(data));
 
         const project = await NewProject.findByPk(data.projectId);
         //TODO

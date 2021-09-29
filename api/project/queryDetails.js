@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
     await NewProject.findByPk(projectId).then(data => {
 
-        if (data === null) res.send(Result.SUCCESS(data));
+        if (data === null) return res.send(Result.SUCCESS(data));
 
         //TODO
         const staked = 0;

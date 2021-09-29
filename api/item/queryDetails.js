@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 
     await NewItem.findByPk(itemId).then(async data => {
 
-        if (data === null) res.send(Result.SUCCESS(data));
+        if (data === null) return res.send(Result.SUCCESS(data));
 
         const project = await NewProject.findByPk(data.projectId);
         const penalties = await Penalty.count({where: {itemId: itemId}});
