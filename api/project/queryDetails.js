@@ -6,6 +6,9 @@ module.exports = async (req, res) => {
     const projectId = parseInt(req.query.projectId) || 0;
 
     await NewProject.findByPk(projectId).then(data => {
+
+        if (data === null) res.send(Result.SUCCESS(data));
+
         //TODO
         const staked = 0;
         const totalFine = 0;

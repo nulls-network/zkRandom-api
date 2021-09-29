@@ -9,6 +9,9 @@ module.exports = async (req, res) => {
     const itemId = parseInt(req.query.itemId) || 0;
 
     await NewItem.findByPk(itemId).then(async data => {
+
+        if (data === null) res.send(Result.SUCCESS(data));
+
         const project = await NewProject.findByPk(data.projectId);
         const penalties = await Penalty.count({where: {itemId: itemId}});
         const privateKey = await PublishPublicKey.findOne({attributes: ['prikey'], where: {itemId: itemId}});

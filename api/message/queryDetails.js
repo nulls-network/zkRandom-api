@@ -7,6 +7,9 @@ module.exports = async (req, res) => {
     const requestKey = req.query.requestKey || 0;
 
     await NewMessage.findByPk(requestKey).then(async data => {
+
+        if (data === null) res.send(Result.SUCCESS(data));
+
         const project = await NewProject.findByPk(data.projectId);
         //TODO
         const playerAddress = 'playerAddress';
