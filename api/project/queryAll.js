@@ -4,8 +4,10 @@ const Penalty = require('../../model/Penalty')
 const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
+
     const limit = parseInt(req.query.limit) || 10;
     const page = parseInt(req.query.page) || 1;
+
     await NewProject.findAll({
         attributes: ['blockNumber', 'logIndex', 'projectId', 'name', 'oper', 'createTime'],
         limit: limit,
@@ -14,21 +16,20 @@ module.exports = async (req, res) => {
     }).then(async data => {
         const resList = []
         for (let datum of data) {
-            const projectId = datum.projectId;
-            const items = await NewItem.count({
-                where: {
-                    projectId: projectId
-                }
-            })
+            const items = await NewItem.count({where: {projectId: datum.projectId}})
+            const penalties = await Penalty.count({where: {projectId: datum.projectId}})
+            //TODO
+            const staked = 0;
+            const randoms = 0;
             resList.push({
                 'blockNumber': datum.blockNumber,
                 'logIndex': datum.logIndex,
                 'Project': datum.name,
                 'Admin Address': datum.oper,
-                'Staked': 0,
+                'Staked': staked,
                 'Items': items,
-                'Penalties': 0,
-                'Randoms': 0,
+                'Penalties': penalties,
+                'Randoms': randoms,
                 'Time': datum.createTime
             })
         }
