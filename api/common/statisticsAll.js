@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     if (!isNaN(itemId)) {
         options.where = {itemId: itemId}
     }
-    const projects = await NewProject.count(options);
+    const projects = await NewProject.count();
     const items = await NewItem.count(options);
     const nonces = await NewMessage.count(options);
     const penalties = await NewProject.count(options);
