@@ -6,11 +6,13 @@ const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
     const projectId = parseInt(req.query.projectId);
+    const itemId = parseInt(req.query.itemId);
     const options = {}
     if (!isNaN(projectId)) {
-        options.where = {
-            projectId: projectId
-        }
+        options.where = {projectId: projectId}
+    }
+    if (!isNaN(itemId)) {
+        options.where = {itemId: itemId}
     }
     const projects = await NewProject.count(options);
     const items = await NewItem.count(options);

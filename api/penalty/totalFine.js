@@ -2,5 +2,5 @@ const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
     //TODO
-    return Result.SUCCESS(0)
+    res.send(Result.SUCCESS(0))
 }

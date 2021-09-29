@@ -1,15 +1,14 @@
 const NewProject = require('../../model/NewProject')
-const TotalFine = require('../penalty/totalFine')
 const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
 
     const projectId = parseInt(req.query.projectId) || 0;
 
-    await NewProject.findByPk(projectId).then(async data => {
+    await NewProject.findByPk(projectId).then(data => {
         //TODO
         const staked = 0;
-        const totalFine = await TotalFine();
+        const totalFine = 0;
         res.send(Result.SUCCESS({
             'ProjectID': data.projectId,
             'Date': data.createTime,

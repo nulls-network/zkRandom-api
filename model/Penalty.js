@@ -16,8 +16,7 @@ const Penalty = sequelize.define('Penalty', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true,
-        primaryKey: true
+        allowNull: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -37,7 +36,8 @@ const Penalty = sequelize.define('Penalty', {
     },
     requestKey: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        primaryKey: true
     },
     createTime: {
         type: DataTypes.TIME,

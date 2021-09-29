@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const page = parseInt(req.query.page) || 1;
     const projectId = parseInt(req.query.projectId);
+    const itemId = parseInt(req.query.itemId);
     const options = {
         attributes: ['blockNumber', 'logIndex', 'blockHash', 'projectId', 'itemId', 'requestKey', 'createTime'],
         limit: limit,
@@ -14,11 +15,11 @@ module.exports = async (req, res) => {
         order: [['createTime', 'DESC']]
     };
     if (!isNaN(projectId)) {
-        options.where = {
-            projectId: projectId
-        }
+        options.where = {projectId: projectId}
     }
-
+    if (!isNaN(itemId)) {
+        options.where = {itemId: itemId}
+    }
     await Penalty.findAll(options).then(async data => {
         const resList = []
         for (let datum of data) {
