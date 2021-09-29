@@ -7,13 +7,19 @@ module.exports = async (req, res) => {
 
     const limit = parseInt(req.query.limit) || 10;
     const page = parseInt(req.query.page) || 1;
-
-    await NewItem.findAll({
+    const projectId = parseInt(req.query.projectId);
+    const options = {
         attributes: ['blockNumber', 'logIndex', 'blockHash', 'projectId', 'itemId', 'createTime'],
         limit: limit,
         offset: (page - 1) * limit,
         order: [['createTime', 'DESC']]
-    }).then(async data => {
+    }
+    if (!isNaN(projectId)) {
+        options.where = {
+            projectId: projectId
+        }
+    }
+    await NewItem.findAll(options).then(async data => {
         const resList = []
         for (let datum of data) {
             const project = await NewProject.findByPk(datum.projectId)

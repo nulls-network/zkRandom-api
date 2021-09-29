@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
             resList.push({
                 'blockNumber': datum.blockNumber,
                 'logIndex': datum.logIndex,
+                'ProjectId': datum.projectId,
                 'Project': datum.name,
                 'Admin Address': datum.oper,
                 'Staked': staked,
