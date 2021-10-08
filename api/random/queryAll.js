@@ -1,4 +1,4 @@
-const NewMessage = require('../../model/NewMessage')
+const NewRandom = require('../../model/NewRandom')
 const NewProject = require('../../model/NewProject')
 const Result = require('../../constants/result')
 
@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     const projectId = parseInt(req.query.projectId);
     const itemId = parseInt(req.query.itemId);
     const options = {
-        attributes: ['blockNumber', 'logIndex', 'blockHash', 'projectId', 'itemId', 'requestKey', 'createTime'],
+        attributes: ['blockNumber', 'logIndex', 'blockHash', 'projectId', 'itemId', 'requestKey', 'rv', 'createTime'],
         limit: limit,
         offset: (page - 1) * limit,
         order: [['createTime', 'DESC']]
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
         options.where = {itemId: itemId}
     }
 
-    await NewMessage.findAll(options).then(async data => {
+    await NewRandom.findAll(options).then(async data => {
         const resList = []
         for (let datum of data) {
             const project = await NewProject.findByPk(datum.projectId)
@@ -32,8 +32,8 @@ module.exports = async (req, res) => {
                 'projectId': project.projectId,
                 'project': project.name,
                 'itemID': datum.itemId,
-                'playerAddress': datum.origin,
-                'requestKey': datum.requestKey,
+                'playerAddress': project.oper,
+                'rV': datum.rv,
                 'time': datum.createTime
             })
         }

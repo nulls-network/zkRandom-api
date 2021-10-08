@@ -14,19 +14,19 @@ module.exports = async (req, res) => {
 
         const project = await NewProject.findByPk(data.projectId);
         const penalties = await Penalty.count({where: {itemId: itemId}});
+        const totalFine = await Penalty.sum('rewardAmount', {where: {itemId: itemId}});
         const privateKey = await PublishPublicKey.findOne({attributes: ['prikey'], where: {itemId: itemId}});
-        //TODO
-        const totalFine = 0;
+
         res.send(Result.SUCCESS({
-            'Project ID': project.projectId,
-            'Project Name': project.name,
-            'Admin Address': project.oper,
-            'Item ID': data.itemId,
-            'Penalties': penalties,
-            'TotalFine': totalFine,
-            'Public Key': data.pubkey,
-            'Private Key': privateKey,
-            'Timestamp': data.createTime
+            'timestamp': data.createTime,
+            'projectID': project.projectId,
+            'projectName': project.name,
+            'adminAddress': project.oper,
+            'itemID': data.itemId,
+            'penalties': penalties,
+            'totalFine': totalFine,
+            'publicKey': data.pubkey,
+            'privateKey': privateKey
         }))
     }).catch(err => {
         res.send(Result.ERROR(err))

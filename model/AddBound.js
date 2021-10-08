@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-module.exports = sequelize.define('PublishPublicKey', {
+module.exports = sequelize.define('AddBound', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -27,12 +27,12 @@ module.exports = sequelize.define('PublishPublicKey', {
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    itemId: {
-        type: DataTypes.INTEGER,
+    payAmount: {
+        type: DataTypes.BIGINT,
         allowNull: true
     },
-    prikey: {
-        type: DataTypes.STRING,
+    penaltyTimes: {
+        type: DataTypes.TINYINT,
         allowNull: true
     },
     createTime: {
@@ -40,7 +40,6 @@ module.exports = sequelize.define('PublishPublicKey', {
         allowNull: true
     }
 }, {
-    tableName: 'PublishPublicKey',
+    tableName: 'AddBound',
     timestamps: false
 });
-

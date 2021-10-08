@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-const Penalty = sequelize.define('Penalty', {
+module.exports = sequelize.define('Penalty', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -16,7 +16,8 @@ const Penalty = sequelize.define('Penalty', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        primaryKey: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -34,10 +35,21 @@ const Penalty = sequelize.define('Penalty', {
         type: DataTypes.TINYINT,
         allowNull: true
     },
+    balance: {
+        type: DataTypes.BIGINT,
+        allowNull: true
+    },
     requestKey: {
         type: DataTypes.STRING,
-        allowNull: true,
-        primaryKey: true
+        allowNull: true
+    },
+    sender: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    rewardAmount: {
+        type: DataTypes.BIGINT,
+        allowNull: true
     },
     createTime: {
         type: DataTypes.TIME,
@@ -47,4 +59,5 @@ const Penalty = sequelize.define('Penalty', {
     tableName: 'Penalty',
     timestamps: false
 });
-module.exports = Penalty
+
+

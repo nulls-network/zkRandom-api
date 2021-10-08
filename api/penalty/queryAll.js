@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     const projectId = parseInt(req.query.projectId);
     const itemId = parseInt(req.query.itemId);
     const options = {
-        attributes: ['blockNumber', 'logIndex', 'blockHash', 'projectId', 'itemId', 'requestKey', 'createTime'],
+        attributes: ['blockNumber', 'logIndex', 'blockHash', 'projectId', 'itemId', 'requestKey', 'rewardAmount', 'sender', 'createTime'],
         limit: limit,
         offset: (page - 1) * limit,
         order: [['createTime', 'DESC']]
@@ -25,19 +25,17 @@ module.exports = async (req, res) => {
         const resList = []
         for (let datum of data) {
             const project = await NewProject.findByPk(datum.projectId)
-            //TODO
-            const reportAddress = 'reporter';
-            const fine = 0;
             resList.push({
                 'blockNumber': datum.blockNumber,
                 'logIndex': datum.logIndex,
-                'Hash': datum.blockHash,
-                'Project': project.name,
-                'Item ID': datum.itemId,
+                'hash': datum.blockHash,
+                'projectId': project.projectId,
+                'project': project.name,
+                'itemID': datum.itemId,
                 'requestKey': datum.requestKey,
-                'Reporter Address': reportAddress,
-                'Fine': fine,
-                'Time': datum.createTime
+                'reporterAddress': datum.sender,
+                'fine(USDT)': datum.rewardAmount,
+                'time': datum.createTime
             })
         }
         res.send(Result.SUCCESS(resList))

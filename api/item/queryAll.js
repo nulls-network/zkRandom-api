@@ -1,5 +1,6 @@
 const NewItem = require('../../model/NewItem')
 const NewProject = require('../../model/NewProject')
+const NewRandom = require('../../model/NewRandom')
 const Penalty = require('../../model/Penalty')
 const Result = require('../../constants/result')
 
@@ -23,19 +24,18 @@ module.exports = async (req, res) => {
         for (let datum of data) {
             const project = await NewProject.findByPk(datum.projectId)
             const penalties = await Penalty.count({where: {itemId: datum.itemId}})
-            //TODO
-            // To Be Completed Api
-            const randoms = 0;
+            const randoms = await NewRandom.count({where: {itemId: datum.itemId}})
             resList.push({
                 'blockNumber': datum.blockNumber,
                 'logIndex': datum.logIndex,
-                'Hash': datum.blockHash,
-                'Project': project.name,
-                'Admin Address': project.oper,
-                'Item ID': datum.itemId,
-                'Penalties': penalties,
-                'Randoms': randoms,
-                'Time': datum.createTime
+                'hash': datum.blockHash,
+                'projectId': project.projectId,
+                'project': project.name,
+                'adminAddress': project.oper,
+                'itemID': datum.itemId,
+                'penalties': penalties,
+                'randoms': randoms,
+                'time': datum.createTime
             })
         }
         res.send(Result.SUCCESS(resList))

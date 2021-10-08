@@ -1,3 +1,4 @@
+const NewRandom = require('../../model/NewRandom')
 const NewMessage = require('../../model/NewMessage')
 const NewProject = require('../../model/NewProject')
 const Result = require('../../constants/result')
@@ -6,13 +7,15 @@ module.exports = async (req, res) => {
 
     const requestKey = req.query.requestKey || '';
 
-    await NewMessage.findByPk(requestKey.toString()).then(async data => {
+    await NewRandom.findByPk(requestKey.toString()).then(async data => {
 
         if (data === null) return res.send(Result.SUCCESS(data));
 
         const project = await NewProject.findByPk(data.projectId);
+        const message = await NewMessage.findByPk(requestKey.toString());
         res.send(Result.SUCCESS({
-            'requestKey': data.requestKey,
+            'rV': message.hv,
+            'requestKey': data.key,
             'timestamp': data.createTime,
             'hV': data.hv,
             'hash': data.transactionHash,

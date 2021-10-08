@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-const NewItem = sequelize.define('NewItem', {
+module.exports = sequelize.define('NewItem', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -35,6 +35,10 @@ const NewItem = sequelize.define('NewItem', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    model: {
+        type: DataTypes.TINYINT,
+        allowNull: true
+    },
     createTime: {
         type: DataTypes.TIME,
         allowNull: true
@@ -43,4 +47,5 @@ const NewItem = sequelize.define('NewItem', {
     tableName: 'NewItem',
     timestamps: false
 });
-module.exports = NewItem
+
+

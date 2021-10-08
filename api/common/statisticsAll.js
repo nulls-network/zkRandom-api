@@ -2,6 +2,7 @@ const NewProject = require('../../model/NewProject')
 const NewItem = require('../../model/NewItem')
 const NewMessage = require('../../model/NewMessage')
 const Penalty = require('../../model/Penalty')
+const NewRandom = require('../../model/NewRandom')
 const Result = require('../../constants/result')
 
 module.exports = async (req, res) => {
@@ -19,16 +20,15 @@ module.exports = async (req, res) => {
     const items = await NewItem.count(options);
     const nonces = await NewMessage.count(options);
     const penalties = await Penalty.count(options);
-    //TODO
-    const address = 0;
-    const randoms = 0;
+    const randoms = await NewRandom.count(options);
+    const addresses = await NewMessage.count({col: 'origin', distinct: true});
 
     res.send(Result.SUCCESS({
-        'Projects': projects,
-        'Items': items,
-        'Nonces': nonces,
-        'Randoms': randoms,
-        'Penalties': penalties,
-        'Player Address': address,
+        'projects': projects,
+        'items': items,
+        'nonces': nonces,
+        'randoms': randoms,
+        'penalties': penalties,
+        'playerAddress': addresses,
     }))
 }

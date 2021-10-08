@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-const NewMessage = sequelize.define('NewMessage', {
+module.exports = sequelize.define('NewMessage', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -16,7 +16,8 @@ const NewMessage = sequelize.define('NewMessage', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        primaryKey: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -30,12 +31,19 @@ const NewMessage = sequelize.define('NewMessage', {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    key: {
+    requestKey: {
         type: DataTypes.STRING,
-        allowNull: true,
-        primaryKey: true
+        allowNull: true
     },
     hv: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    callback: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    origin: {
         type: DataTypes.STRING,
         allowNull: true
     },
@@ -47,4 +55,4 @@ const NewMessage = sequelize.define('NewMessage', {
     tableName: 'NewMessage',
     timestamps: false
 });
-module.exports = NewMessage
+

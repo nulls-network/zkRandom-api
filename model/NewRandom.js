@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-module.exports = sequelize.define('PublishPublicKey', {
+module.exports = sequelize.define('NewRandom', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -16,8 +16,7 @@ module.exports = sequelize.define('PublishPublicKey', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true,
-        primaryKey: true
+        allowNull: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -29,9 +28,14 @@ module.exports = sequelize.define('PublishPublicKey', {
     },
     itemId: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
     },
-    prikey: {
+    requestKey: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        primaryKey: true
+    },
+    rv: {
         type: DataTypes.STRING,
         allowNull: true
     },
@@ -40,7 +44,7 @@ module.exports = sequelize.define('PublishPublicKey', {
         allowNull: true
     }
 }, {
-    tableName: 'PublishPublicKey',
+    tableName: 'NewRandom',
     timestamps: false
 });
 

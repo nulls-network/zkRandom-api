@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require("../config/mysql")
 
-const NewProject = sequelize.define('NewProject', {
+module.exports = sequelize.define('NewProject', {
     blockNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -35,6 +35,14 @@ const NewProject = sequelize.define('NewProject', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    depositAmt: {
+        type: DataTypes.BIGINT,
+        allowNull: true
+    },
+    status: {
+        type: DataTypes.TINYINT,
+        allowNull: true
+    },
     createTime: {
         type: DataTypes.TIME,
         allowNull: true
@@ -43,4 +51,4 @@ const NewProject = sequelize.define('NewProject', {
     tableName: 'NewProject',
     timestamps: false
 });
-module.exports = NewProject
+

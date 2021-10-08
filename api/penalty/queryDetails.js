@@ -11,19 +11,16 @@ module.exports = async (req, res) => {
         if (data === null) return res.send(Result.SUCCESS(data));
 
         const project = await NewProject.findByPk(data.projectId);
-        //TODO
-        const reporterAddress = 'reporterAddress';
-        const fine = 0;
+
         res.send(Result.SUCCESS({
-            'Timestamp': data.createTime,
-            'Project ID': project.projectId,
-            'Project Name': project.name,
-            'Item ID': data.itemId,
+            'timestamp': data.createTime,
+            'projectID': project.projectId,
+            'projectName': project.name,
+            'itemID': data.itemId,
             'requestKey': requestKey,
-            'PenaltyTimes': data.penaltyTimes,
-            'Reporter Address': reporterAddress,
-            'Fine': fine,
-            'Admin Address': project.oper,
+            'penaltyTimes': data.penaltyTimes,
+            'reporterAddress': data.sender,
+            'fine': data.rewardAmount,
         }))
     }).catch(err => {
         res.send(Result.ERROR(err))
