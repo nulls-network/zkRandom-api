@@ -16,8 +16,7 @@ module.exports = sequelize.define('Penalty', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true,
-        primaryKey: true
+        allowNull: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -41,7 +40,8 @@ module.exports = sequelize.define('Penalty', {
     },
     requestKey: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        primaryKey: true
     },
     sender: {
         type: DataTypes.STRING,

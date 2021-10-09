@@ -3,7 +3,7 @@
  */
 
 const CodeNumber = {
-    SUCCESS: 200,
+    SUCCESS: 0,
     ERROR: 500,
 }
 module.exports = CodeNumber

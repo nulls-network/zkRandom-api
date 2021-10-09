@@ -10,17 +10,14 @@ module.exports = async (req, res) => {
     await NewProject.findByPk(projectId).then(async data => {
 
         if (data === null) return res.send(Result.SUCCESS(data));
+
         const totalStaked = await AddBound.sum('payAmount', {where: {projectId: projectId}}) + data.depositAmt;
         const totalPenalty = await Penalty.sum('rewardAmount', {where: {projectId: projectId}});
         const totalBalance = totalStaked - totalPenalty;
         const tolerance = Math.min(totalBalance * 10 / data.depositAmt, 10);
-        let unstaking = 0;
-        let unstaked = 0;
-        if (data.status === 1) {
-            unstaking += totalBalance;
-        } else if (data.status === 2) {
-            unstaked += totalBalance;
-        }
+        let unstaking = data.status === 1 ? totalBalance : 0;
+        let unstaked = data.status === 2 ? totalBalance : 0;
+
         res.send(Result.SUCCESS({
             'projectID': data.projectId,
             'date': data.createTime,

@@ -16,8 +16,7 @@ module.exports = sequelize.define('PublishPublicKey', {
     },
     transactionHash: {
         type: DataTypes.STRING,
-        allowNull: true,
-        primaryKey: true
+        allowNull: true
     },
     logIndex: {
         type: DataTypes.TINYINT,
@@ -29,7 +28,8 @@ module.exports = sequelize.define('PublishPublicKey', {
     },
     itemId: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        primaryKey: true
     },
     prikey: {
         type: DataTypes.STRING,
