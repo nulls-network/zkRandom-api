@@ -12,7 +12,17 @@ module.exports = async (req, res) => {
     }
     sql += ') a left join (select FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d") date,count(1) count from NewRandom group by FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d")) b on a.date = b.date order by date'
 
-    const result = await sequelize.query(sql,{ raw : true })
+    const object = await sequelize.query(sql,{ raw : true })
+
+
+    let result = []
+
+    if( object ){
+        for( let obj of object ){
+            result.push( obj.count )
+        }
+    }
+
 
     res.send(Result.SUCCESS(result))
 }
