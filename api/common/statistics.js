@@ -15,16 +15,15 @@ module.exports = async (req, res) => {
     const object = await sequelize.query(sql,{ raw : true })
 
 
-    // let result = []
+    let result = []
 
-    // if( object ){
-    //     for( let obj of object ){
-    //         result.push( obj.count )
-    //     }
-    // }
+    if( object ){
+        for( let obj of object[0] ){
+            result.push( obj.count )
+        }
+    }
 
 
-    // res.send(Result.SUCCESS(count))
+    res.send(Result.SUCCESS(result))
 
-    res.send(object)
 }
