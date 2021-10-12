@@ -5,6 +5,7 @@ const Penalty = require('../../model/Penalty')
 const NewRandom = require('../../model/NewRandom')
 const Result = require('../../constants/result')
 
+// statistics home page data
 module.exports = async (req, res) => {
 
     const projectId = parseInt(req.query.projectId);
