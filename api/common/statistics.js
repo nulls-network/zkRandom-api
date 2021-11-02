@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     for( let i = 1; i <= 29; i ++ ){
         sql += " union all SELECT DATE_SUB(CURDATE(), INTERVAL "+ i +" DAY) AS date"
     }
-    sql += ') a left join (select FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d") date,count(1) count from NewRandom group by FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d")) b on a.date = b.date order by date'
+    sql += ') a left join (select FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d") date,count(1) count from newrandom group by FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d")) b on a.date = b.date order by date'
 
     const object = await sequelize.query(sql,{ raw : true })
 
