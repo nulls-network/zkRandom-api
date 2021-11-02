@@ -40,7 +40,7 @@ module.exports = sequelize.define('PublishPublicKey', {
         allowNull: true
     }
 }, {
-    tableName: 'PublishPublicKey',
+    tableName: 'publishpublickey',
     timestamps: false
 });
 

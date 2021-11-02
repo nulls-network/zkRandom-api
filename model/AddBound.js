@@ -40,6 +40,6 @@ module.exports = sequelize.define('AddBound', {
         allowNull: true
     }
 }, {
-    tableName: 'AddBound',
+    tableName: 'addbound',
     timestamps: false
 });

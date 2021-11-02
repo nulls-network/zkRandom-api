@@ -52,7 +52,7 @@ module.exports = sequelize.define('NewMessage', {
         allowNull: true
     }
 }, {
-    tableName: 'NewMessage',
+    tableName: 'newmessage',
     timestamps: false
 });
 

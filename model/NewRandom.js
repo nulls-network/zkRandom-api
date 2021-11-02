@@ -44,7 +44,7 @@ module.exports = sequelize.define('NewRandom', {
         allowNull: true
     }
 }, {
-    tableName: 'NewRandom',
+    tableName: 'newrandom',
     timestamps: false
 });
 

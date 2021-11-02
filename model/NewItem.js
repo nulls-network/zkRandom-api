@@ -44,7 +44,7 @@ module.exports = sequelize.define('NewItem', {
         allowNull: true
     }
 }, {
-    tableName: 'NewItem',
+    tableName: 'newitem',
     timestamps: false
 });
 

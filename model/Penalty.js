@@ -56,7 +56,7 @@ module.exports = sequelize.define('Penalty', {
         allowNull: true
     }
 }, {
-    tableName: 'Penalty',
+    tableName: 'penalty',
     timestamps: false
 });
 
