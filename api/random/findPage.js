@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     const itemId = req.query.itemId
 
     let sql = 'select '
-        +' a.blockNumber,a.logIndex,a.blockHash,a.projectId,a.itemId,b.oper,a.rv,a.createTime '+
+        +' a.blockNumber,a.logIndex,a.blockHash,a.projectId,a.itemId,b.oper,a.rv,a.createTime '
         +' from newrandom a left join newproject b on a.projectId = b.projectId where 1=1 '
 
     if (!isNaN(projectId)) {
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
     sql += ' order by a.createTime DESC limit ?,? '
 
     let list = await db.query(sql, {
-        replacements: [projectId, itemId, (page - 1) * limit, limit],
+        replacements: [projectId, itemId, limit,(page - 1) * limit],
         type: QueryTypes.SELECT
     })
     let count = await db.query(count_sql, {
