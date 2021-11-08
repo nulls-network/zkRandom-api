@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     const itemId = req.query.itemId
 
     let sql = 'select '
-        +' a.blockNumber,a.logIndex,a.blockHash,a.projectId,a.itemId,b.oper,a.rv,a.createTime time '+
+        +' a.blockNumber,a.logIndex,a.blockHash,a.projectId,a.itemId,b.oper,a.rv,a.createTime '+
         +' from newrandom a left join newproject b on a.projectId = b.projectId where 1=1 '
 
     if (!isNaN(projectId)) {
