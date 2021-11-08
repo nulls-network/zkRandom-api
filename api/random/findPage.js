@@ -3,8 +3,10 @@ const Result = require('../../constants/result')
 const { QueryTypes } = require('sequelize');
 
 module.exports = async (req, res) => {
-    const limit = parseInt(req.query.limit) || 10
-    const page = parseInt(req.query.page) || 1
+    const limit = req.query.limit ? parseInt(req.query.limit) : 10
+    const page = req.query.page ? parseInt(req.query.page) : 1
+
+    console.log('limit : ' + limit + ", page : "+page)
 
     const projectId = req.query.projectId
     const itemId = req.query.itemId
