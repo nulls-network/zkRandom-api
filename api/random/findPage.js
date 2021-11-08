@@ -1,5 +1,6 @@
 const db = require('../../config/mysql')
 const Result = require('../../constants/result')
+const { QueryTypes } = require('sequelize');
 
 module.exports = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10
