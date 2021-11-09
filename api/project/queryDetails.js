@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     }
     sql += ') a left join (select FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d") date,count(1) count from newrandom group by FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d")) b on a.date = b.date where 1=1'
 
-    sql += ' and projectId = ? '
+    sql += ' and b.projectId = ? '
 
     sql += ' order by date'
     const object = await db.query(sql, {
