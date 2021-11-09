@@ -1,6 +1,6 @@
 const db = require('../../config/mysql')
 const Result = require('../../constants/result')
-const { QueryTypes } = require('sequelize');
+const { QueryTypes } = require('sequelize')
 
 module.exports = async (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : 10
@@ -40,6 +40,5 @@ module.exports = async (req, res) => {
         count: count[0]['count(1)'],
         row: list
     }
-    res.status(200).json(result.success(data));
-    
+    res.status(200).json(Result.success(data))
 }
