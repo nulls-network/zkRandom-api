@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
         sql += ' and a.itemId = ? '
         params.push(itemId)
     }
-    const count_sql = 'select count(1) from ( ' + sql + ' )'
+    const count_sql = 'select count(1) from ( ' + sql + ' ) a '
     sql += ' order by a.createTime DESC limit ?,? '
 
     const replacements = [].concat(params)
