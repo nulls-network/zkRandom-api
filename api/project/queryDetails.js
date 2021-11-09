@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     for (let i = 1; i <= 29; i++) {
         sql += " union all SELECT DATE_SUB(CURDATE(), INTERVAL " + i + " DAY) AS date"
     }
-    sql += ') a left join (select FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d") date,count(1) count from newrandom where b.projectId = ? group by FROM_UNIXTIME(createTime / 1000,"%Y-%m-%d")) b on a.date = b.date '
+    sql += ') a left join (select FROM_UNIXTIME(createTime / 1000,\'%Y-%m-%d\') date,count(1) count from newrandom where projectId = ? group by FROM_UNIXTIME(createTime / 1000,\'%Y-%m-%d\')) b on a.date = b.date '
     sql += ' order by date'
     const object = await db.query(sql, {
         replacements: [projectId],
