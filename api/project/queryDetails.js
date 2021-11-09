@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
 
     if (object) {
         for (let obj of object) {
-            statistics.push(obj)
+            statistics.push(obj.count)
         }
     }
     res.send(Result.SUCCESS({
