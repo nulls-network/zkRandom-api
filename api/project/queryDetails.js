@@ -5,6 +5,7 @@ const NewItem = require('../../model/NewItem')
 const NewRandom = require('../../model/NewRandom')
 const Result = require('../../constants/result')
 const db = require('../../config/mysql')
+const { QueryTypes } = require('sequelize')
 
 module.exports = async (req, res) => {
 
