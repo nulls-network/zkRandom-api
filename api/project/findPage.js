@@ -10,10 +10,10 @@ module.exports = async (req, res) => {
     const page = req.query.page ? parseInt(req.query.page) : 1
 
     let sql = 'select '
-        + ' a.blockNumber,a.logIndex,a.projectId,a.name project,a.oper adminAddress,b.depositAmt staked,a.createTime time, '
+        + ' a.blockNumber,a.logIndex,a.projectId,a.name project,a.oper adminAddress,a.depositAmt staked,a.createTime time, '
         + ' (select count(1) from newitem where projectId = a.projectId) items,'
-        + ' (select count(1) from Penalty where projectId = a.projectId) items,'
-        + ' (select count(1) from NewRandom where projectId = a.projectId) items'
+        + ' (select count(1) from Penalty where projectId = a.projectId) penalties,'
+        + ' (select count(1) from NewRandom where projectId = a.projectId) randoms'
         + ' from newproject a '
 
     const count_sql = 'select count(1) from ( ' + sql + ' ) a '
