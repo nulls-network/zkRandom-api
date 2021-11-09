@@ -15,19 +15,19 @@ module.exports = async (req, res) => {
 
     const params = []
     if (!isNaN(projectId)) {
-        sql += ' and projectId = ? '
+        sql += ' and a.projectId = ? '
         params.push(projectId)
     }
     if (!isNaN(itemId)) {
-        sql += ' and itemId = ? '
+        sql += ' and a.itemId = ? '
         params.push(itemId)
     }
     const count_sql = 'select count(1) from ( ' + sql + ' )'
     sql += ' order by a.createTime DESC limit ?,? '
 
     const replacements = [].concat(params)
-    replacements.push(limit)
     replacements.push((page - 1) * limit)
+    replacements.push(limit)
     let list = await db.query(sql, {
         replacements,
         type: QueryTypes.SELECT
