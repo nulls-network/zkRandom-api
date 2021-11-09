@@ -40,5 +40,5 @@ module.exports = async (req, res) => {
         count: count[0]['count(1)'],
         row: list
     }
-    res.status(200).json(Result.success(data))
+    res.status(200).json(Result.SUCCESS(data))
 }
