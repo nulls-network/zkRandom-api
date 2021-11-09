@@ -14,11 +14,11 @@ module.exports = async (req, res) => {
 
     const params = []
     if (!isNaN(projectId)) {
-        sql += ' and projectId = ?'
+        sql += ' and a.projectId = ?'
         params.push( projectId )
     }
     if (!isNaN(itemId)) {
-        sql += ' and itemId = ?'
+        sql += ' and a.itemId = ?'
         params.push( itemId )
     }
 
