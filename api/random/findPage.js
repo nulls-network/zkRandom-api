@@ -6,8 +6,6 @@ module.exports = async (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : 10
     const page = req.query.page ? parseInt(req.query.page) : 1
 
-    console.log('limit : ' + limit + ", page : "+page)
-
     const projectId = req.query.projectId
     const itemId = req.query.itemId
 
@@ -15,21 +13,27 @@ module.exports = async (req, res) => {
         +' a.blockNumber,a.logIndex,a.blockHash,a.projectId,a.itemId,b.oper,a.rv,a.createTime '
         +' from newrandom a left join newproject b on a.projectId = b.projectId where 1=1 '
 
+    const params = []
     if (!isNaN(projectId)) {
         sql += ' and projectId = ? '
+        params.push(projectId)
     }
     if (!isNaN(itemId)) {
         sql += ' and itemId = ? '
+        params.push(itemId)
     }
     const count_sql = 'select count(1) from ( ' + sql + ' )'
     sql += ' order by a.createTime DESC limit ?,? '
 
+    const replacements = [].concat(params)
+    replacements.push(limit)
+    replacements.push((page - 1) * limit)
     let list = await db.query(sql, {
-        replacements: [projectId, itemId, limit,(page - 1) * limit],
+        replacements,
         type: QueryTypes.SELECT
     })
     let count = await db.query(count_sql, {
-        replacements: [projectId, itemId],
+        replacements: params,
         type: QueryTypes.SELECT
     })
     let data = {
