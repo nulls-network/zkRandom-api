@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
             'projectName': project.name,
             'itemID': data.itemId,
             'adminAddress': project.oper,
+            'nonce':data.key_nonce
         }))
     }).catch(err => {
         res.send(Result.ERROR(err))
