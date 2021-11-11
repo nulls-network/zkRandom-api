@@ -6,30 +6,23 @@ module.exports = async (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : 10
     const page = req.query.page ? parseInt(req.query.page) : 1
 
-    const projectId = req.query.projectId
-    const itemId = req.query.itemId
     const address = req.query.address
+    if (isNaN(address)) {
+        res.status(200).json(Result.SUCCESS({ count : 0, row : [] }))
+        return
+    }
 
     let sql = 'select '
-        +' a.blockNumber,a.logIndex,a.blockHash hash,a.projectId,b.name project,a.itemId itemID,b.oper playerAddress,a.rv rV,a.createTime time'
-        +' from newrandom a left join newproject b on a.projectId = b.projectId where 1=1 '
+        + ' a.blockNumber,a.logIndex,a.transactionHash hash,a.itemId,b.key_nonce nonce,a.sender reportAddress,a.rewardAmount \'fine(USDT)\',a.createTime time '
+        + ' from penalty a left join newmessage b on a.requestKey = b.requestKey where 1=1 '
 
     const params = []
-    if (!isNaN(projectId)) {
-        sql += ' and a.projectId = ? '
-        params.push(projectId)
-    }
-    if (!isNaN(itemId)) {
-        sql += ' and a.itemId = ? '
-        params.push(itemId)
-    }
-    if (!isNaN(address)) {
-        sql += ' and b.oper = ? '
-        params.push(address)
-    }
-    const count_sql = 'select count(1) from ( ' + sql + ' ) a '
-    sql += ' order by a.createTime DESC limit ?,? '
+    sql += ' and a.sender = ?'
+    params.push(address)
 
+    const count_sql = 'select count(1) from ( ' + sql + ' ) a '
+    sql += ' order by a.createTime desc limit ?,? '
+    
     const replacements = [].concat(params)
     replacements.push((page - 1) * limit)
     replacements.push(limit)
