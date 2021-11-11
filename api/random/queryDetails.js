@@ -17,13 +17,16 @@ module.exports = async (req, res) => {
         const message = await NewMessage.findByPk(requestKey.toString());
 
         const newItem = await NewItem.findByPk(data.itemId)
-        const privateKey = await PublishPublicKey.findOne({attributes: ['prikey'], where: {itemId: data.itemId}});
+        const privateKey = await PublishPublicKey.findOne({ attributes: ['prikey'], where: { itemId: data.itemId } });
 
         res.send(Result.SUCCESS({
+            'logIndex': data.logIndex,
+            'blockNumber': data.blockNumber,
             'rV': message.hv,
             'requestKey': data.key,
             'timestamp': data.createTime,
             'hV': data.hv,
+            'nonce': message.key_nonce,
             'hash': data.transactionHash,
             'playerAddress': data.origin,
             'projectID': project.projectId,
