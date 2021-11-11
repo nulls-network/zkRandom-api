@@ -43,6 +43,10 @@ module.exports = sequelize.define('NewProject', {
         type: DataTypes.TINYINT,
         allowNull: true
     },
+    token: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     createTime: {
         type: DataTypes.TIME,
         allowNull: true

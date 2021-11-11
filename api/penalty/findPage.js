@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
     const itemId = req.query.itemId
 
     let sql = 'select '
-        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, a.itemID, a.requestKey,a.rewardAmount \'fine(USDT)\', a.sender reporterAddress, a.createTime time '
-        + ' from Penalty a left join newproject b on a.projectId = b.projectId where 1=1 '
+        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, a.itemID, a.requestKey,a.rewardAmount \'fine(USDT)\', a.sender reporterAddress, a.createTime time, c.decimals,c.simpleName tokenName '
+        + ' from Penalty a left join newproject b on a.projectId = b.projectId left join token c on a.token = c.contract where 1=1 '
 
     const params = []
     if (!isNaN(projectId)) {

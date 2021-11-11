@@ -3,6 +3,7 @@ const Penalty = require('../../model/Penalty')
 const AddBound = require('../../model/AddBound')
 const NewItem = require('../../model/NewItem')
 const NewRandom = require('../../model/NewRandom')
+const Token = require('../../model/Token')
 const Result = require('../../constants/result')
 const db = require('../../config/mysql')
 const { QueryTypes } = require('sequelize')
@@ -13,6 +14,8 @@ module.exports = async (req, res) => {
 
     const data = await NewProject.findByPk(projectId)
     if (data === null) return res.send(Result.SUCCESS(data));
+
+    const token = await Token.findByPk(data.token)
 
     const totalStaked = await AddBound.sum('payAmount', { where: { projectId: projectId } }) + data.depositAmt;
     const totalPenalty = await Penalty.sum('rewardAmount', { where: { projectId: projectId } });
@@ -54,7 +57,9 @@ module.exports = async (req, res) => {
         'unstaking': unstaking,
         'unstaked': unstaked,
         'toleranceTimes': tolerance,
-        penalties, randoms, items, statistics
+        penalties, randoms, items, statistics,
+        decimals: token.decimals,
+        tokenName: token.simpleName
     }))
 
 }

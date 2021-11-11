@@ -13,8 +13,8 @@ module.exports = async (req, res) => {
     }
 
     let sql = 'select '
-        + ' a.blockNumber,a.logIndex,a.transactionHash hash,a.itemId,b.key_nonce nonce,a.sender reportAddress,a.rewardAmount \'fine(USDT)\',a.createTime time '
-        + ' from penalty a left join newmessage b on a.requestKey = b.requestKey where 1=1 '
+        + ' a.blockNumber,a.logIndex,a.transactionHash hash,a.itemId,b.key_nonce nonce,a.sender reportAddress,a.rewardAmount \'fine(USDT)\',a.createTime time, c.decimals,c.simpleName tokenName '
+        + ' from penalty a left join newmessage b on a.requestKey = b.requestKey left join token c on a.token = c.contract where 1=1 '
 
     const params = []
     sql += ' and a.sender = ?'

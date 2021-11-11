@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require("../config/mysql")
 
 module.exports = sequelize.define('Penalty', {
@@ -49,6 +49,10 @@ module.exports = sequelize.define('Penalty', {
     },
     rewardAmount: {
         type: DataTypes.BIGINT,
+        allowNull: true
+    },
+    token: {
+        type: DataTypes.STRING,
         allowNull: true
     },
     createTime: {
