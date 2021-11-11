@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     const address = req.query.address
 
     let sql = 'select '
-        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, a.itemID, a.oper playerAddress, a.requestKey, a.createTime time, a.key_nonce nonce '
+        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, a.itemID, a.origin playerAddress, a.requestKey, a.createTime time, a.key_nonce nonce '
         + ' from newmessage a left join newproject b on a.projectId = b.projectId where 1=1'
 
     const params = []
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
         params.push( itemId )
     }
     if (!isNaN(address)) {
-        sql += ' and a.oper = ?'
+        sql += ' and a.origin = ?'
         params.push( address )
     }
 
