@@ -14,15 +14,15 @@ module.exports = async (req, res) => {
     }
 
     let sql = 'select '
-        + ' blockNumber,logIndex,blockHash hash,oper unstakingAddress,unBondBalance value,unBondTime time '
-        + ' from newproject where projectId = ? and status = 2 '
+        + ' a.blockNumber,a.logIndex,a.blockHash hash,a.oper unstakingAddress,a.unBondBalance value,a.unBondTime time, b.decimals, b.simpleName tokenName '
+        + ' from newproject a left join token b on a.token = b.contract where a.projectId = ? and a.status = 2 '
     
     const params = []
     params.push(projectId)
     
 
     const count_sql = 'select count(1) from ( ' + sql + ' ) a '
-    sql += ' order by unBondTime desc limit ?,? '
+    sql += ' order by a.unBondTime desc limit ?,? '
 
     const replacements = [].concat(params)
     replacements.push((page - 1) * limit)
