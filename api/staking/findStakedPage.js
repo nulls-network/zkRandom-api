@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
     let sql = 'select '
         + ' a.blockNumber,a.logIndex,a.blockHash hash,a.user stakingAddress,a.payAmount value,a.createTime time,b.decimals,b.simpleName tokenName  '
-        + ' from addbound a left join newsproject c on a.projectId = c.projectId left join token b on c.token = b.contract where a.projectId = ? '
+        + ' from addbound a left join newproject c on a.projectId = c.projectId left join token b on c.token = b.contract where a.projectId = ? '
     
     const params = []
     params.push(projectId)
