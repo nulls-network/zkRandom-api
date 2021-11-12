@@ -50,6 +50,30 @@ module.exports = sequelize.define('NewMessage', {
     createTime: {
         type: DataTypes.TIME,
         allowNull: true
+    },
+    key_nonce: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    key_itemId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    key_hv: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    key_callback: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    key_created: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    key_isDead: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true
     }
 }, {
     tableName: 'newmessage',
