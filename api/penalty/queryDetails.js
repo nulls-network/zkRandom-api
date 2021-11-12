@@ -19,24 +19,22 @@ module.exports = async (req, res) => {
         const token = await Token.findByPk(data.token)
 
 
-        const obj = {
-            'timestamp': data.createTime,
-            'projectID': project.projectId,
-            'projectName': project.name,
-            'itemID': data.itemId,
-            'nonce': message.key_nonce,
-            'nonceKey': requestKey,
-            'cumulativePenalty': data.penaltyTimes,
-            'reportAddress': data.sender,
-            'fine': data.rewardAmount,
-            'rv': random.rv,
-            'decimals': token.decimals,
-            'tokenName': token.simpleName
-        }
+        // const obj = {
+        //     'timestamp': data.createTime,
+        //     'projectID': project.projectId,
+        //     'projectName': project.name,
+        //     'itemID': data.itemId,
+        //     'nonce': message.key_nonce,
+        //     'nonceKey': requestKey,
+        //     'cumulativePenalty': data.penaltyTimes,
+        //     'reportAddress': data.sender,
+        //     'fine': data.rewardAmount,
+        //     'rv': random.rv,
+        //     'decimals': token.decimals,
+        //     'tokenName': token.simpleName
+        // }
 
-        console.log('obj:'+JSON.stringify(obj))
-
-        res.send(Result.SUCCESS( obj ))
+        res.send(Result.SUCCESS( { project,message,random,token } ))
     }).catch(err => {
         res.send(Result.ERROR(err))
     });
