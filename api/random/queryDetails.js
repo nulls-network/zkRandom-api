@@ -35,6 +35,7 @@ module.exports = async (req, res) => {
             'adminAddress': project.oper,
             'publicKey': newItem.pubkey,
             'privateKey': privateKey
+            
         }))
     }).catch(err => {
         res.send(Result.ERROR(err))
