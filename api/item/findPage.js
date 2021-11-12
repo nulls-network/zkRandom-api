@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     const projectId = req.query.projectId
 
     let sql = 'select '
-        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, b.oper adminAddress, a.itemId, a.createTime time, '
+        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, b.oper adminAddress, a.itemID, a.createTime time, '
         + ' ( select count(1) from penalty where itemid = a.itemid ) penalties,'
         + ' ( select count(1) from newrandom where itemid = a.itemid ) randoms'
         + ' from newItem a left join newproject b on a.projectId = b.projectId where 1=1'
