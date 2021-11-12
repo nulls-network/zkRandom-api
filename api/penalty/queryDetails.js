@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
             'nonceKey': requestKey,
             'cumulativePenalty': data.penaltyTimes,
             'reportAddress': data.sender,
-            'fine': data.rewardAmount,
+            'fine(USDT)': data.rewardAmount,
             'rv': random ? random.rv : null,
             'decimals': token.decimals,
             'tokenName': token.simpleName
