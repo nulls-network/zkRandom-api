@@ -16,9 +16,12 @@ module.exports = async (req, res) => {
         const project = await NewProject.findByPk(data.projectId);
         const penalties = await Penalty.count({ where: { itemId: itemId } });
         const totalFine = await Penalty.sum('rewardAmount', { where: { itemId: itemId } });
-        const pen = await Penalty.findOne({ where: { itemId: itemId } })
         const privateKey = await PublishPublicKey.findOne({ attributes: ['prikey'], where: { itemId: itemId } });
-        const token = await Token.findByPk(pen.token)
+        const pen = await Penalty.findOne({ where: { itemId: itemId } })
+        let token = null
+        if( pen ){ 
+            token = await Token.findByPk(pen.token)
+        }
 
         res.send(Result.SUCCESS({
             'timestamp': data.createTime,
@@ -30,8 +33,8 @@ module.exports = async (req, res) => {
             'totalFine': totalFine,
             'publicKey': data.pubkey,
             'privateKey': privateKey,
-            'decimals': token.decimals,
-            'tokenName': token.simpleName
+            'decimals': token ? token.decimals : null,
+            'tokenName': token? token.simpleName : null
         }))
     }).catch(err => {
         res.send(Result.ERROR(err))
