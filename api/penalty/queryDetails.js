@@ -18,23 +18,20 @@ module.exports = async (req, res) => {
         const random = await NewRandom.findByPk(requestKey)
         const token = await Token.findByPk(data.token)
 
-
-        // const obj = {
-        //     'timestamp': data.createTime,
-        //     'projectID': project.projectId,
-        //     'projectName': project.name,
-        //     'itemID': data.itemId,
-        //     'nonce': message.key_nonce,
-        //     'nonceKey': requestKey,
-        //     'cumulativePenalty': data.penaltyTimes,
-        //     'reportAddress': data.sender,
-        //     'fine': data.rewardAmount,
-        //     'rv': random.rv,
-        //     'decimals': token.decimals,
-        //     'tokenName': token.simpleName
-        // }
-
-        res.send(Result.SUCCESS( { project,message,random,token } ))
+        res.send(Result.SUCCESS( {
+            'timestamp': data.createTime,
+            'projectID': project.projectId,
+            'projectName': project.name,
+            'itemID': data.itemId,
+            'nonce': message.key_nonce,
+            'nonceKey': requestKey,
+            'cumulativePenalty': data.penaltyTimes,
+            'reportAddress': data.sender,
+            'fine': data.rewardAmount,
+            'rv': random ? random.rv : null,
+            'decimals': token.decimals,
+            'tokenName': token.simpleName
+        } ))
     }).catch(err => {
         res.send(Result.ERROR(err))
     });
