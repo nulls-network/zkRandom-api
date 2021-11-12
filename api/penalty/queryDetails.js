@@ -18,7 +18,8 @@ module.exports = async (req, res) => {
         const random = await NewRandom.findByPk(requestKey)
         const token = await Token.findByPk(data.token)
 
-        res.send(Result.SUCCESS({
+
+        const obj = {
             'timestamp': data.createTime,
             'projectID': project.projectId,
             'projectName': project.name,
@@ -31,7 +32,11 @@ module.exports = async (req, res) => {
             'rv': random.rv,
             'decimals': token.decimals,
             'tokenName': token.simpleName
-        }))
+        }
+
+        console.log('obj:'+JSON.stringify(obj))
+
+        res.send(Result.SUCCESS( obj ))
     }).catch(err => {
         res.send(Result.ERROR(err))
     });
