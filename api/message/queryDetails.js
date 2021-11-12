@@ -17,9 +17,9 @@ module.exports = async (req, res) => {
             'hV': data.hv,
             'hash': data.transactionHash,
             'playerAddress': data.origin,
-            'projectID': project.projectId,
+            'projectId': project.projectId,
             'projectName': project.name,
-            'itemID': data.itemId,
+            'itemId': data.itemId,
             'adminAddress': project.oper,
             'nonce':data.key_nonce
         }))

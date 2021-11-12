@@ -25,10 +25,10 @@ module.exports = async (req, res) => {
 
         res.send(Result.SUCCESS({
             'timestamp': data.createTime,
-            'projectID': project.projectId,
+            'projectId': project.projectId,
             'projectName': project.name,
             'adminAddress': project.oper,
-            'itemID': data.itemId,
+            'itemId': data.itemId,
             'penalties': penalties,
             'totalFine': totalFine,
             'publicKey': data.pubkey,

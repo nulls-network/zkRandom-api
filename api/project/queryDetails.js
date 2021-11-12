@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
         }
     }
     res.send(Result.SUCCESS({
-        'projectID': data.projectId,
+        'projectId': data.projectId,
         'date': data.createTime,
         'staked': data.depositAmt,
         'adminAddress': data.oper,

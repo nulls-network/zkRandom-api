@@ -20,9 +20,9 @@ module.exports = async (req, res) => {
 
         res.send(Result.SUCCESS( {
             'timestamp': data.createTime,
-            'projectID': project.projectId,
+            'projectId': project.projectId,
             'projectName': project.name,
-            'itemID': data.itemId,
+            'itemId': data.itemId,
             'nonce': message.key_nonce,
             'nonceKey': requestKey,
             'cumulativePenalty': data.penaltyTimes,
