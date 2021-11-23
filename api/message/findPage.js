@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
     const address = req.query.address
 
     let sql = 'select '
-        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, a.itemId, a.origin playerAddress, a.requestKey, a.createTime time, a.key_nonce nonce, c.model, a.timeout  '
-        + ' from newmessage a left join newproject b on a.projectId = b.projectId left join newitem c on c.projectid = b.projectId where 1=1'
+        + ' a.blockNumber, a.logIndex, a.blockHash hash, a.projectId, b.name project, a.itemId, a.origin playerAddress, a.requestKey, a.createTime time, a.key_nonce nonce, c.model, a.timeout, d.requestKey rKey  '
+        + ' from newmessage a left join newproject b on a.projectId = b.projectId left join newitem c on c.projectid = b.projectId left join newrandom d on d.requestKey = a.requestKey where 1=1'
 
     const params = []
     if (!isNaN(projectId)) {
