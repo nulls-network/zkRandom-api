@@ -28,11 +28,11 @@ module.exports = async (req, res) => {
             'hV': message.hv,
             'nonce': message.key_nonce,
             'hash': data.transactionHash,
-            'playerAddress': message.origin,
+            'playerAddress': project.oper,
             'projectId': project.projectId,
             'projectName': project.name,
             'itemId': data.itemId,
-            'adminAddress': project.oper,
+            'adminAddress': message.origin,
             'publicKey': newItem.pubkey,
             'privateKey': privateKey
 
