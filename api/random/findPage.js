@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     const address = req.query.address
 
     let sql = 'select '
-        +' a.blockNumber,a.logIndex,a.blockHash hash,a.projectId,b.name project,a.itemId, c.origin playerAddress,a.rv rV,a.createTime time,a.requestKey'
+        +' a.blockNumber,a.logIndex,a.transactionHash hash,a.projectId,b.name project,a.itemId, c.origin playerAddress,a.rv rV,a.createTime time,a.requestKey'
         +' from newrandom a left join newproject b on a.projectId = b.projectId left join newmessage c on a.requestKey = c.requestKey  where 1=1 '
 
     const params = []
