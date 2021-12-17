@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
 
     let sql = 'select '
         +' a.blockNumber,a.logIndex,a.blockHash hash,a.projectId,b.name project,a.itemId,b.oper playerAddress,a.rv rV,a.createTime time,a.requestKey'
-        +' from newrandom a left join newproject b on a.projectId = b.projectId where 1=1 '
+        +' from newrandom a left join newproject b on a.projectId = b.projectId left join newmessage c on a.requestKey = c.requestKey  where 1=1 '
 
     const params = []
     if (!isNaN(projectId)) {
@@ -24,7 +24,8 @@ module.exports = async (req, res) => {
         params.push(itemId)
     }
     if (!isNaN(address)) {
-        sql += ' and b.oper = ? '
+        sql += ' and ( b.oper = ? or c.origin = ? )'
+        params.push(address)
         params.push(address)
     }
     const count_sql = 'select count(1) from ( ' + sql + ' ) a '
