@@ -30,7 +30,9 @@ module.exports = async (req, res) => {
             'fine(USDT)': data.rewardAmount,
             'rv': random ? random.rv : null,
             'decimals': token.decimals,
-            'tokenName': token.simpleName
+            'tokenName': token.simpleName,
+            'blockNumber': data.blockNumber ,
+            'logIndex': data.logIndex
         } ))
     }).catch(err => {
         res.send(Result.ERROR(err))

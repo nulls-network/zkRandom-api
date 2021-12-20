@@ -59,7 +59,9 @@ module.exports = async (req, res) => {
         'toleranceTimes': tolerance,
         penalties, randoms, items, statistics,
         decimals: token.decimals,
-        tokenName: token.simpleName
+        tokenName: token.simpleName,
+        'blockNumber': data.blockNumber ,
+        'logIndex': data.logIndex
     }))
 
 }
